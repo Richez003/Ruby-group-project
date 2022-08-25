@@ -8,8 +8,8 @@ class Item
         @published_date = published_date
       end
 
-      def add_genre=(genre)
-        @genre = genre  
+      def add_author=(author)
+        @author = author  
         author.items.push(self) unless author.items.include?(self)
       end
 
