@@ -1,4 +1,4 @@
-require_relative './item'
+require_relative './em'
 
 class Game < Item
   attr_accessor :multiplayer, :last_played_at, :publish_date

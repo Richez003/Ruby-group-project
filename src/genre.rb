@@ -1,4 +1,4 @@
-require_relative './item'
+require_relative './em'
 
 class Genre
   attr_accessor :name, :id
