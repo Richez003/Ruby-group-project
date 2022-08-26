@@ -27,21 +27,21 @@ class Start
     when '1'
       @app.list_books
     when '2'
-      # List music albums
+      @app.list_music_albums
     when '3'
-      # List games
+      @app.list_games
     when '4'
-      # List genres
+      @app.list_genres
     when '5'
-      # List labels
+      @app.list_labels
     when '6'
-      # List authors
+      @app.list_authors
     when '7'
       @app.add_book
     when '8'
-      # Add music album
+      @app.add_music_album
     when '9'
-      # Add game
+      @app.add_game
     when '10'
       # Write Files
       puts 'Sayonara!'
