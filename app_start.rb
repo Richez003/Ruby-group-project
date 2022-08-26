@@ -1,7 +1,6 @@
 require './app'
 
 class Start
-
   def initialize
     @app = App.new
   end

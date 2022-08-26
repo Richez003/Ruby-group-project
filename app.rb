@@ -9,7 +9,7 @@ class App
     @music_albums = []
     @games = []
     @genres = []
-    @label = []
+    @labels = []
     @authors = []
   end
 
@@ -19,7 +19,7 @@ class App
       puts 'There are no books added!'
     else
       @books.each do |book|
-        puts "#{book.title}"
+        puts "Book name: #{book.title}"
       end
     end
   end
@@ -29,8 +29,8 @@ class App
     if @music_albums.empty?
       puts 'There are no books added!'
     else
-      @music_albums.each do |book|
-        puts "#{book.title}"
+      @music_albums.each do |album|
+        puts "Album name: #{album.name}"
       end
     end
   end
@@ -40,8 +40,8 @@ class App
     if @games.empty?
       puts 'There are no books added!'
     else
-      @games.each do |book|
-        puts "#{book.title}"
+      @games.each do |game|
+        puts "Game: #{game.name}"
       end
     end
   end
@@ -51,19 +51,19 @@ class App
     if @genres.empty?
       puts 'There are no books added!'
     else
-      @genres.each do |book|
-        puts "#{book.title}"
+      @genres.each do |genre|
+        puts "Genre: #{genre.name}"
       end
     end
   end
 
   # 5
   def list_labels
-    if @label.empty?
+    if @labels.empty?
       puts 'There are no books added!'
     else
-      @label.each do |book|
-        puts "#{book.title}"
+      @labels.each do |label|
+        puts "Label: #{label.title}"
       end
     end
   end
@@ -73,13 +73,13 @@ class App
     if @authors.empty?
       puts 'There are no books added!'
     else
-      @authors.each do |book|
-        puts "#{book.title}"
+      @authors.each do |author|
+        puts "Author: #{author.first_name}"
       end
     end
   end
 
-  # 7 (also adds a label)
+  # 7 (also adds author's name and a label)
 
   def add_book
     puts 'Please enter the following'
@@ -91,16 +91,21 @@ class App
     book_cover_state = gets.chomp.downcase
     puts 'Publishing year [YYYY]: '
     book_publish_date = gets.chomp.to_i
+    puts 'Author\'s First Name: '
+    author_first_name = gets.chomp
+    puts 'Author\'s Last Name: '
+    author_last_name = gets.chomp
     puts 'Book\'s label: '
     label_name = gets.chomp
     puts 'Label\'s color: '
     label_color = gets.chomp
 
     @books << Book.new(book_title, book_publisher, book_cover_state, book_publish_date)
-    @label << Label.new(label_name, label_color)
+    @authors << Author.new(author_first_name, author_last_name)
+    @labels << Label.new(label_name, label_color)
   end
 
-  # 8
+  # 8 (also adds a genre)
   def add_music_album
     puts 'Please enter the following'
     puts 'Music Album Name: '
@@ -109,12 +114,12 @@ class App
     album_publish_date = gets.chomp.to_i
     puts 'Is this album on Spotify? [y/n]'
     on_spotify = gets.chomp
-    if on_spotify == 'y'
-      on_spotify = true
-    else
-      on_spotify = false
-    end
+    on_spotify = on_spotify == 'y'
+    puts 'What genre is this album? [Eg. Rock, Pop, Techno, etc.]'
+    genre = gets.chomp
+
     @music_albums << MusicAlbum.new(album_name, album_publish_date, on_spotify)
+    @genres << Genre.new(genre)
   end
 
   # 9
@@ -122,17 +127,12 @@ class App
     puts 'Please enter the following'
     puts 'Is this game multiplayer? [y/n]'
     multiplayer = gets.chomp
-    if multiplayer == 'y'
-      multiplayer = true
-    else
-      multiplayer = false
-    end
+    multiplayer = multiplayer == 'y'
     puts 'Last played at: [YYYY]'
     last_played_at = gets.chomp
     puts 'Publishing year [YYYY]: '
     game_publish_date = gets.chomp.to_i
 
     @games << Game.new(multiplayer, last_played_at, game_publish_date)
-
   end
 end
