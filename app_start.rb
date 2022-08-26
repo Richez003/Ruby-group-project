@@ -21,7 +21,7 @@ class Start
     options(input)
   end
 
-  def options(input)
+  def option(input)
     case input
     when '1'
       @app.list_books
