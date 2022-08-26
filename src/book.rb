@@ -1,4 +1,4 @@
-require_relative './em'
+require_relative './item'
 
 class Book < Item
   attr_accessor :title, :publisher, :cover_state

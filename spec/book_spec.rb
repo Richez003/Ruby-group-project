@@ -11,7 +11,7 @@ describe Book do
     end
 
     it 'should return correct book publisher' do
-      expect(@book.publisher).to eq('Harry Potter')
+      expect(@book.publisher).to eq('Penguin')
     end
   end
 end
