@@ -1,5 +1,5 @@
-require_relative './src/book'
-require_relative './src/label'
+require './book'
+require './label'
 
 class App
   attr_accessor :books
