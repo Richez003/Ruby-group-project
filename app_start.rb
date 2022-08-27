@@ -46,12 +46,21 @@ class Start
     when '9'
       @app.add_game
     when '10'
-      write_data(@app.authors, @app.books, @app.games, @app.genres, @app.labels, @app.music_albums)
+      write_function
       puts 'Sayonara!'
       exit
     else
       puts 'Invalid input (must be between 1 to 10). Try again.'
     end
+  end
+
+  def write_function
+    write_authors(@app.authors)
+    write_books(@app.books)
+    write_games(@app.games)
+    write_genres(@app.genres)
+    write_labels(@app.labels)
+    write_music_albums(@app.music_albums)
   end
 
   def run
