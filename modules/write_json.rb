@@ -26,7 +26,7 @@ module WriteData
         title: book.title,
         publisher: book.publisher,
         cover_state: book.cover_state,
-        publish_date: book.publish_date
+        publish_date: book.published_date
       }
     end
     File.write('./data/books.json', JSON.generate(json_books))
@@ -34,11 +34,11 @@ module WriteData
 
   def write_games(games)
     json_games = []
-    games.each do |_game|
+    games.each do |game|
       json_games << {
         multiplayer: game.multiplayer,
         last_played_at: game.last_played_at,
-        game_publish_date: game.publish_date
+        publish_date: game.publish_date
       }
     end
     File.write('./data/games.json', JSON.generate(json_games))
@@ -46,24 +46,34 @@ module WriteData
 
   def write_genres(genres)
     json_genres = []
-    genres.each do |_genre|
-      json_genres << {}
+    genres.each do |genre|
+      json_genres << {
+        name: genre.name,
+        published_date: genre.publish_date
+      }
     end
     File.write('./data/genres.json', JSON.generate(json_genres))
   end
 
   def write_labels(labels)
     json_labels = []
-    labels.each do |_label|
-      json_labels << {}
+    labels.each do |label|
+      json_labels << {
+        title: label.title,
+        color: label.color
+      }
     end
     File.write('./data/labels.json', JSON.generate(json_labels))
   end
 
   def write_music_albums(music_albums)
     json_music_albums = []
-    music_albums.each do |_music_album|
-      json_music_albums << {}
+    music_albums.each do |music_album|
+      json_music_albums << {
+        name: music_album.name,
+        publish_date: music_album.publish_date,
+        on_spotify: music_album.on_spotify
+      }
     end
     File.write('./data/music_albums.json', JSON.generate(json_music_albums))
   end
