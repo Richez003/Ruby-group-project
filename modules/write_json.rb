@@ -1,13 +1,4 @@
 module WriteData
-  def write_data(authors, books, games, genres, labels, music_albums)
-    write_authors(authors)
-    write_books(books)
-    write_games(games)
-    write_genres(genres)
-    write_labels(labels)
-    write_music_albums(music_albums)
-  end
-
   def write_authors(authors)
     json_authors = []
     authors.each do |author|
@@ -71,7 +62,7 @@ module WriteData
     music_albums.each do |music_album|
       json_music_albums << {
         name: music_album.name,
-        publish_date: music_album.publish_date,
+        publish_date: music_album.published_date,
         on_spotify: music_album.on_spotify
       }
     end
