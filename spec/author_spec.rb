@@ -13,7 +13,7 @@ describe 'Unit Tests for Author Class' do
     it 'should not be an instance of Item' do
       expect(@author).not_to be_instance_of Item
     end
-end
+  end
 
   context 'First name of author' do
     it 'should be "Stephen"' do
