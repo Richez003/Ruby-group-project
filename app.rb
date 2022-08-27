@@ -6,15 +6,15 @@ require_relative './src/label'
 require_relative './src/music_album'
 
 class App
-  attr_accessor :books
+  attr_accessor :authors, :books, :games, :genres, :labels, :music_albums
 
   def initialize
+    @authors = []
     @books = []
-    @music_albums = []
     @games = []
     @genres = []
     @labels = []
-    @authors = []
+    @music_albums = []
   end
 
   # 1
@@ -123,7 +123,7 @@ class App
     genre = gets.chomp
 
     @music_albums << MusicAlbum.new(album_name, album_publish_date, on_spotify)
-    @genres << Genre.new(genre)
+    @genres << Genre.new(genre, album_publish_date)
   end
 
   # 9
@@ -138,5 +138,9 @@ class App
     game_publish_date = gets.chomp.to_i
 
     @games << Game.new(multiplayer, last_played_at, game_publish_date)
+  end
+
+  def write_data_to_files
+    write_to_json(@books, 'books')
   end
 end

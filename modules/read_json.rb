@@ -1,0 +1,6 @@
+read_author
+read_book
+read_game
+read_genre
+read_label
+read_music_album
