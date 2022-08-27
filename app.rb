@@ -4,17 +4,19 @@ require_relative './src/game'
 require_relative './src/genre'
 require_relative './src/label'
 require_relative './src/music_album'
+require_relative './modules/read_json'
 
 class App
-  attr_accessor :books
+  include ReadData
+  attr_accessor :authors, :books, :games, :genres, :labels, :music_albums
 
   def initialize
-    @books = []
-    @music_albums = []
-    @games = []
-    @genres = []
-    @labels = []
-    @authors = []
+    @authors = read_author
+    @books = read_book
+    @games = read_game
+    @genres = read_genre
+    @labels = read_label
+    @music_albums = read_music_album
   end
 
   # 1
@@ -23,7 +25,9 @@ class App
       puts 'There are no books added!'
     else
       @books.each do |book|
-        puts "Book name: #{book.title}"
+        puts "Book name: #{book.title}, Book Publisher: #{book.publisher}"
+        puts "Book Cover State: #{book.cover_state}, Book Publish Date: #{book.published_date}"
+        puts '=========================================================='
       end
     end
   end
@@ -67,7 +71,7 @@ class App
       puts 'There are no books added!'
     else
       @labels.each do |label|
-        puts "Label: #{label.title}"
+        puts "Label: #{label.color} #{label.title}"
       end
     end
   end
@@ -78,7 +82,7 @@ class App
       puts 'There are no books added!'
     else
       @authors.each do |author|
-        puts "Author: #{author.first_name}"
+        puts "Author's Name: #{author.first_name} #{author.last_name}"
       end
     end
   end
@@ -123,7 +127,7 @@ class App
     genre = gets.chomp
 
     @music_albums << MusicAlbum.new(album_name, album_publish_date, on_spotify)
-    @genres << Genre.new(genre)
+    @genres << Genre.new(genre, album_publish_date)
   end
 
   # 9
@@ -138,5 +142,9 @@ class App
     game_publish_date = gets.chomp.to_i
 
     @games << Game.new(multiplayer, last_played_at, game_publish_date)
+  end
+
+  def write_data_to_files
+    write_to_json(@books, 'books')
   end
 end

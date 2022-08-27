@@ -1,6 +1,10 @@
+require 'json'
 require './app'
+require_relative './modules/write_json'
 
 class Start
+  include WriteData
+
   def initialize
     @app = App.new
   end
@@ -35,15 +39,15 @@ class Start
       @app.list_labels
     when '6'
       @app.list_authors
-      # when '7'
-      #   @app.add_book
-      # when '8'
-      #   @app.add_music_album
-      # when '9'
-      #   @app.add_game
-      # when '10'
-      #   Write Files
-      #   puts 'Sayonara!'
+    when '7'
+      @app.add_book
+    when '8'
+      @app.add_music_album
+    when '9'
+      @app.add_game
+    when '10'
+      write_data(@app.authors, @app.books, @app.games, @app.genres, @app.labels, @app.music_albums)
+      puts 'Sayonara!'
       exit
     else
       puts 'Invalid input (must be between 1 to 10). Try again.'
